@@ -1,38 +1,58 @@
+// import 'react-native-gesture-handler';
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Colors from './constants/Colors';
-import Strings from './constants/Strings';
 
 import HomeScreen from './screens/HomeScreen';
 import JobDetailScreen from './screens/JobDetailScreen/';
+import FavoritesScreen from './screens/FavoritesScreen/FavoritesScreen';
+
+const Stack = createNativeStackNavigator();
+const Drawer = createDrawerNavigator();
+
+const StackNavigator = () => {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="HomeScreen"
+        component={HomeScreen}
+        options={{
+          headerTitleAlign: 'center',
+          headerTintColor: Colors.secondary_color,
+          headerTitle: null,
+        }}
+      />
+      <Stack.Screen
+        name="JobDetailScreen"
+        component={JobDetailScreen}
+        options={{
+          headerTitleAlign: 'center',
+          headerTintColor: Colors.secondary_color,
+          headerTitle: null,
+        }}
+      />
+    </Stack.Navigator>
+  );
+};
 
 const Router = () => {
-  const Stack = createNativeStackNavigator();
-
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen
+      <Drawer.Navigator>
+        <Drawer.Screen
           name="HomeScreen"
-          component={HomeScreen}
-          options={{
-            headerTitleAlign: 'center',
-            headerTintColor: Colors.secondary_color,
-            headerTitle: null,
-          }}
+          component={StackNavigator}
+          options={{headerShown: false, drawerLabel: 'Jobs'}}
         />
-        <Stack.Screen
-          name="JobDetailScreen"
-          component={JobDetailScreen}
-          options={{
-            headerTitleAlign: 'center',
-            headerTintColor: Colors.secondary_color,
-            headerTitle: null,
-          }}
+        <Drawer.Screen
+          name="FavoritesScreen"
+          component={FavoritesScreen}
+          options={{headerTitle: 'Favorites', drawerLabel: 'Favorites'}}
         />
-      </Stack.Navigator>
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

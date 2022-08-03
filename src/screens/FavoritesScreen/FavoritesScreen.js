@@ -7,9 +7,9 @@ import ButtonCard from '../../components/ButtonCard';
 const FavoritesScreen = () => {
   return (
     <View style={styles.container}>
-      <JobCard />
+      {/* <JobCard /> */}
       <View style={styles.btn}>
-        <ButtonCard button_title={'Remove'} />
+        <ButtonCard button_title={'Remove'} name="heart" fill={'#fff'} />
       </View>
     </View>
   );

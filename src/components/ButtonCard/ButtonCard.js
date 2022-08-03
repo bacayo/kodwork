@@ -1,14 +1,24 @@
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, View} from 'react-native';
 import React from 'react';
 
 import styles from './ButtonCardStyles';
+import SVGIcons from '../Icon/SVGIcons';
 
-const Button = ({button_title}) => {
+const ButtonCard = ({button_title, name, fill}) => {
   return (
     <TouchableOpacity style={styles.btn}>
-      <Text style={styles.title}>{button_title}</Text>
+      <View style={styles.innerContainer}>
+        <SVGIcons
+          stroke={'white'}
+          name={name}
+          width={24}
+          height={24}
+          fill={fill}
+        />
+        <Text style={styles.title}>{button_title}</Text>
+      </View>
     </TouchableOpacity>
   );
 };
 
-export default Button;
+export default ButtonCard;

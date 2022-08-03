@@ -5,6 +5,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 
 import Colors from './constants/Colors';
+import Strings from './constants/Strings';
 
 import HomeScreen from './screens/HomeScreen';
 import JobDetailScreen from './screens/JobDetailScreen/';
@@ -22,7 +23,7 @@ const StackNavigator = () => {
         options={{
           headerTitleAlign: 'center',
           headerTintColor: Colors.secondary_color,
-          headerTitle: null,
+          headerTitle: Strings.jobs,
         }}
       />
       <Stack.Screen
@@ -43,7 +44,7 @@ const Router = () => {
     <NavigationContainer>
       <Drawer.Navigator>
         <Drawer.Screen
-          name="HomeScreen"
+          name="StackNavigator"
           component={StackNavigator}
           options={{headerShown: false, drawerLabel: 'Jobs'}}
         />

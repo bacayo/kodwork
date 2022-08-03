@@ -15,4 +15,9 @@ export default StyleSheet.create({
     textAlign: 'center',
     padding: 5,
   },
+  innerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
 });

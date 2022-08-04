@@ -8,7 +8,7 @@ const listJobByIdSlice = createSlice({
     isLoading: false,
     error: null,
     item: undefined,
-    id: undefined,
+    status: undefined,
   },
   reducers: {},
   extraReducers: {
@@ -17,7 +17,6 @@ const listJobByIdSlice = createSlice({
     },
     [listJobByIdAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
-      state.id = action.payload.id;
       state.item = action.payload;
     },
     [listJobByIdAsync.rejected]: (state, action) => {

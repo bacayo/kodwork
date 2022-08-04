@@ -16,6 +16,7 @@ export const listJobByIdAsync = createAsyncThunk(
   'listJobByIdSlice/listJobByIdAsync',
   async id => {
     const response = await axios.get(`jobs/${id}`);
+    console.log(response);
     return response.data;
   },
 );

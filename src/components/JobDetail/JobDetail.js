@@ -32,6 +32,8 @@ const JobDetail = ({job}) => {
           fill={Colors.primary_color}
         />
       </View>
+      <Text>ASdhsakd sajdhas</Text>
+      <Text>{job}</Text>
     </View>
   );
 };

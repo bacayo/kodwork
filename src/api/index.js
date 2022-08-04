@@ -1,4 +1,4 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 const BASE_URL = 'https://www.themuse.com/api/public/';
@@ -16,7 +16,6 @@ export const listJobByIdAsync = createAsyncThunk(
   'listJobByIdSlice/listJobByIdAsync',
   async id => {
     const response = await axios.get(`jobs/${id}`);
-    console.log(response);
     return response.data;
   },
 );

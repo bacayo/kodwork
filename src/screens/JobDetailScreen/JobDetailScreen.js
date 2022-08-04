@@ -1,5 +1,5 @@
-import {View, Text, Dimensions} from 'react-native';
-import React, {useEffect} from 'react';
+import { View, Text, Dimensions } from 'react-native';
+import React, { useEffect } from 'react';
 import ButtonCard from '../../components/ButtonCard';
 import Colors from '../../constants/Colors';
 
@@ -9,9 +9,9 @@ import styles from './JobDetailStyles';
 
 import RenderHTML from 'react-native-render-html';
 
-import {useDispatch, useSelector} from 'react-redux';
-import {listJobByIdAsync} from '../../api';
-import {ScrollView} from 'react-native-gesture-handler';
+import { useDispatch, useSelector } from 'react-redux';
+import { listJobByIdAsync } from '../../api';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const JobDetailScreen = props => {
   useEffect(() => {
@@ -22,7 +22,7 @@ const JobDetailScreen = props => {
 
   const dispatch = useDispatch();
   const id = props.route.params.id;
-  const {item, isLoading} = useSelector(state => state.listJobByIdSlice);
+  const { item, isLoading } = useSelector(state => state.listJobByIdSlice);
 
   const source = {
     html: item?.contents,

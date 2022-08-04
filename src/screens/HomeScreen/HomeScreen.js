@@ -1,4 +1,4 @@
-import { View, FlatList } from 'react-native';
+import { View, FlatList, TouchableOpacity, Text } from 'react-native';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -7,19 +7,36 @@ import JobCard from '../../components/JobCard';
 import { listJobsAsync } from '../../api';
 
 const HomeScreen = () => {
-  useEffect(() => {
-    !isLoading && dispatch(listJobsAsync(page));
-  }, [isLoading, page, dispatch]);
   const dispatch = useDispatch();
-  // eslint-disable-next-line no-unused-vars
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
 
   const { items, isLoading } = useSelector(state => state.listJobsSlice);
 
+  useEffect(() => {
+    // !isLoading && dispatch(listJobsAsync(page));
+    dispatch(listJobsAsync(page));
+  }, [page, dispatch]);
+
   const renderJobs = ({ item }) => <JobCard job={item} />;
+
+  const renderNextPage = () => {
+    setPage(page + 1);
+  };
+
+  const renderPrevScreen = () => {
+    setPage(page - 1);
+  };
 
   return (
     <View style={styles.container}>
+      <View style={styles.changePage}>
+        <TouchableOpacity onPress={renderPrevScreen}>
+          <Text style={styles.prevPage}>Previous</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={renderNextPage}>
+          <Text style={styles.nextPage}>Next</Text>
+        </TouchableOpacity>
+      </View>
       <FlatList renderItem={renderJobs} data={items} />
     </View>
   );

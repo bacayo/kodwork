@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
 export default StyleSheet.create({
@@ -10,7 +10,8 @@ export default StyleSheet.create({
     backgroundColor: Colors.primary_color,
   },
   title: {
-    fontWeight: '700',
+    // fontWeight: '700',
+    fontFamily: 'Roboto-Bold',
     fontSize: 24,
     color: Colors.title_color,
   },
@@ -19,17 +20,20 @@ export default StyleSheet.create({
   },
   info: {
     color: Colors.secondary_color,
-    fontWeight: '700',
+    // fontWeight: '700',
+    fontFamily: 'Roboto-Bold',
   },
   info_title: {
     color: Colors.title_color,
-    fontWeight: '700',
+    // fontWeight: '700',
+    fontFamily: 'Roboto-Bold',
   },
   job_detail_header: {
     textAlign: 'center',
     fontSize: 24,
-    fontWeight: '700',
+    // fontWeight: '700',
     color: Colors.title_color,
+    fontFamily: 'Roboto-Bold',
   },
   innerContainer: {
     backgroundColor: Colors.task_background_color,

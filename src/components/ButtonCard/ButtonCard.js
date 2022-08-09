@@ -1,12 +1,14 @@
-import {TouchableOpacity, Text, View} from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import React from 'react';
 
 import styles from './ButtonCardStyles';
 import SVGIcons from '../Icon/SVGIcons';
 
-const ButtonCard = ({button_title, name, fill}) => {
+const ButtonCard = ({ button_title, name, fill, onPress, visible = false }) => {
   return (
-    <TouchableOpacity style={styles.btn}>
+    <TouchableOpacity
+      style={visible ? styles.btn : styles.btn_display_none}
+      onPress={onPress}>
       <View style={styles.innerContainer}>
         <SVGIcons
           stroke={'white'}

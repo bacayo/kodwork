@@ -1,11 +1,11 @@
-import {View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 import React from 'react';
 
 import styles from './JobDetailStyles';
 import ButtonCard from '../ButtonCard';
 import Colors from '../../constants/Colors';
 
-const JobDetail = ({job}) => {
+const JobDetail = ({ job }) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -25,11 +25,12 @@ const JobDetail = ({job}) => {
         <Text style={styles.job_description}>{job.contents}</Text>
       </View>
       <View style={styles.footer}>
-        <ButtonCard button_title="Submit" name={'submit'} />
+        <ButtonCard button_title="Submit" name={'submit'} visible={false} />
         <ButtonCard
           button_title="Favorite Job"
           name={'heart'}
           fill={Colors.primary_color}
+          visible={true}
         />
       </View>
       <Text>ASdhsakd sajdhas</Text>

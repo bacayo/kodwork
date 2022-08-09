@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
 import Colors from '../../constants/Colors';
 
 export default StyleSheet.create({
@@ -9,6 +9,13 @@ export default StyleSheet.create({
     borderRadius: 5,
     padding: 5,
     margin: 5,
+  },
+  btn_display_none: {
+    flex: 1,
+    borderRadius: 5,
+    padding: 5,
+    margin: 5,
+    display: 'none',
   },
   title: {
     color: Colors.task_background_color,

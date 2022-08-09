@@ -1,31 +1,36 @@
-import { View, Text, Dimensions } from 'react-native';
+import { View, Text, Dimensions, ScrollView } from 'react-native';
 import React, { useEffect } from 'react';
 import ButtonCard from '../../components/ButtonCard';
 import Colors from '../../constants/Colors';
 
-// import JobDetail from '../../components/JobDetail';
-// import JobCard from '../../components/JobCard';
 import styles from './JobDetailStyles';
 
 import RenderHTML from 'react-native-render-html';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { listJobByIdAsync } from '../../api';
-import { ScrollView } from 'react-native-gesture-handler';
+
+import { addToFavorites } from '../../context/jobs/listJobByIdSlice';
 
 const JobDetailScreen = props => {
-  useEffect(() => {
-    dispatch(listJobByIdAsync(id));
-  }, [dispatch, isLoading, id]);
-
   const width = Dimensions.get('window').width;
 
   const dispatch = useDispatch();
   const id = props.route.params.id;
-  const { item, isLoading } = useSelector(state => state.listJobByIdSlice);
+  const { item, isLoading, favoriteJobs } = useSelector(
+    state => state.listJobByIdSlice,
+  );
+
+  useEffect(() => {
+    dispatch(listJobByIdAsync(id));
+  }, [id, dispatch, favoriteJobs]);
 
   const source = {
     html: item?.contents,
+  };
+
+  const handleAddToFavorites = () => {
+    dispatch(addToFavorites());
   };
 
   if (item !== undefined && !isLoading) {
@@ -49,11 +54,13 @@ const JobDetailScreen = props => {
             <RenderHTML source={source} contentWidth={width} />
           </View>
           <View style={styles.footer}>
-            <ButtonCard button_title="Submit" name={'submit'} />
+            <ButtonCard button_title="Submit" name={'submit'} visible />
             <ButtonCard
               button_title="Favorite Job"
               name={'heart'}
               fill={Colors.primary_color}
+              onPress={handleAddToFavorites}
+              visible
             />
           </View>
         </View>

@@ -1,16 +1,37 @@
-import {View, StyleSheet} from 'react-native';
-import React from 'react';
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  TouchableOpacity,
+} from 'react-native';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import JobCard from '../../components/JobCard';
-import ButtonCard from '../../components/ButtonCard';
+import { removeFavorites } from '../../context/jobs/listJobByIdSlice';
+import { useNavigation } from '@react-navigation/native';
 
 const FavoritesScreen = () => {
+  const { favoriteJobs } = useSelector(state => state.listJobByIdSlice);
+
+  const dispatch = useDispatch();
+
+  const removeJob = () => {
+    dispatch(removeFavorites());
+  };
+  const navigation = useNavigation();
+
+  const renderFavoriteJobs = ({ item }) => (
+    <JobCard job={item} visible={true} handleAction={removeJob} />
+  );
+
   return (
     <View style={styles.container}>
-      {/* <JobCard /> */}
-      <View style={styles.btn}>
-        <ButtonCard button_title={'Remove'} name="heart" fill={'#fff'} />
-      </View>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
+        <Text>HomeScreen</Text>
+      </TouchableOpacity>
+      <FlatList renderItem={renderFavoriteJobs} data={favoriteJobs} />
     </View>
   );
 };

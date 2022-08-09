@@ -1,4 +1,4 @@
-import {configureStore} from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
 import listJobsSlice from './jobs/listJobsSlice';
 import listJobByIdSlice from './jobs/listJobByIdSlice';

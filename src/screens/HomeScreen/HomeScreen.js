@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import styles from './HomeScreenStyles';
 import JobCard from '../../components/JobCard';
 import { listJobsAsync } from '../../api';
+import { useNavigation } from '@react-navigation/native';
 
 const HomeScreen = () => {
   const dispatch = useDispatch();
@@ -27,8 +28,13 @@ const HomeScreen = () => {
     setPage(page - 1);
   };
 
+  const navigation = useNavigation();
+
   return (
     <View style={styles.container}>
+      <TouchableOpacity onPress={() => navigation.navigate('FavoritesScreen')}>
+        <Text>Favorites</Text>
+      </TouchableOpacity>
       <View style={styles.changePage}>
         <TouchableOpacity onPress={renderPrevScreen}>
           <Text style={styles.prevPage}>Previous</Text>

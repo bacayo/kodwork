@@ -1,8 +1,8 @@
 // import 'react-native-gesture-handler';
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import Colors from './constants/Colors';
 import Strings from './constants/Strings';
@@ -46,12 +46,12 @@ const Router = () => {
         <Drawer.Screen
           name="StackNavigator"
           component={StackNavigator}
-          options={{headerShown: false, drawerLabel: 'Jobs'}}
+          options={{ headerShown: false, drawerLabel: 'Jobs' }}
         />
         <Drawer.Screen
           name="FavoritesScreen"
           component={FavoritesScreen}
-          options={{headerTitle: 'Favorites', drawerLabel: 'Favorites'}}
+          options={{ headerTitle: 'Favorites', drawerLabel: 'Favorites' }}
         />
       </Drawer.Navigator>
     </NavigationContainer>

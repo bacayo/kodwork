@@ -1,6 +1,7 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice, current } from '@reduxjs/toolkit';
+import { Alert } from 'react-native';
 
-import {listJobByIdAsync} from '../../api';
+import { listJobByIdAsync } from '../../api';
 
 const listJobByIdSlice = createSlice({
   name: 'listJobByIdSlice',
@@ -9,14 +10,35 @@ const listJobByIdSlice = createSlice({
     error: null,
     item: undefined,
     status: undefined,
+    favoriteJobs: [],
+    id: undefined,
   },
-  reducers: {},
+  reducers: {
+    addToFavorites: (state, action) => {
+      // same id
+      const idInFavorite = state.favoriteJobs.some(
+        element => element.id === state.id,
+      );
+      //if ids do not match add to list
+      if (!idInFavorite) {
+        state.favoriteJobs.push(state.item);
+      } else {
+        Alert.alert('This job is already in your list');
+      }
+    },
+    removeFavorites: (state, action) => {
+      const ids = state.favoriteJobs.map(item => item.id);
+      console.log(ids);
+      // findIndex of
+    },
+  },
   extraReducers: {
     [listJobByIdAsync.pending]: (state, action) => {
       state.isLoading = true;
     },
     [listJobByIdAsync.fulfilled]: (state, action) => {
       state.isLoading = false;
+      state.id = action.payload.id;
       state.item = action.payload;
     },
     [listJobByIdAsync.rejected]: (state, action) => {
@@ -28,3 +50,4 @@ const listJobByIdSlice = createSlice({
 });
 
 export default listJobByIdSlice.reducer;
+export const { addToFavorites, removeFavorites } = listJobByIdSlice.actions;

@@ -1,10 +1,11 @@
 import { View, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 import { useNavigation } from '@react-navigation/native';
+import ButtonCard from '../ButtonCard';
 
 import styles from './JobCardStyles';
 
-const JobCard = ({ job }) => {
+const JobCard = ({ job, visible, handleAction }) => {
   const navigation = useNavigation();
   const onPress = () => {
     navigation.navigate('JobDetailScreen', {
@@ -29,6 +30,13 @@ const JobCard = ({ job }) => {
         </Text>
         <Text style={styles.level}>{job.levels[0].name}</Text>
       </TouchableOpacity>
+      <ButtonCard
+        button_title={'Remove'}
+        name="heart"
+        fill={'#fff'}
+        visible={visible}
+        onPress={handleAction}
+      />
     </View>
   );
 };

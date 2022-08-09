@@ -1,6 +1,6 @@
-import {createSlice} from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
-import {listJobsAsync} from '../../api';
+import { listJobsAsync } from '../../api';
 
 const listJobsSlice = createSlice({
   name: 'listJobsSlice',

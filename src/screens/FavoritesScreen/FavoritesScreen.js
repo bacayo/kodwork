@@ -1,16 +1,9 @@
-import {
-  Text,
-  View,
-  StyleSheet,
-  FlatList,
-  TouchableOpacity,
-} from 'react-native';
-import React, { useEffect } from 'react';
+import { View, StyleSheet, FlatList } from 'react-native';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import JobCard from '../../components/JobCard';
 import { removeFavorites } from '../../context/jobs/listJobByIdSlice';
-import { useNavigation } from '@react-navigation/native';
 
 const FavoritesScreen = () => {
   const { favoriteJobs } = useSelector(state => state.listJobByIdSlice);
@@ -20,7 +13,6 @@ const FavoritesScreen = () => {
   const removeJob = () => {
     dispatch(removeFavorites());
   };
-  const navigation = useNavigation();
 
   const renderFavoriteJobs = ({ item }) => (
     <JobCard job={item} visible={true} handleAction={removeJob} />
@@ -28,9 +20,6 @@ const FavoritesScreen = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>HomeScreen</Text>
-      </TouchableOpacity>
       <FlatList renderItem={renderFavoriteJobs} data={favoriteJobs} />
     </View>
   );

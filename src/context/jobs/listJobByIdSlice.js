@@ -27,9 +27,8 @@ const listJobByIdSlice = createSlice({
       }
     },
     removeFavorites: (state, action) => {
-      const ids = state.favoriteJobs.map(item => item.id);
-      console.log(ids);
-      // findIndex of
+      const filtered = state.favoriteJobs.filter(item => item === state.id);
+      state.favoriteJobs = filtered;
     },
   },
   extraReducers: {
